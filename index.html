@@ -46,7 +46,8 @@
   .hero .lede b{background:linear-gradient(transparent 62%,var(--sun) 62%);padding:0 3px}
   .hero .fact{font-size:17px;color:var(--muted);max-width:620px;margin:14px 0 0;font-weight:600}
   .hero .fact b{color:var(--ink)}
-  .cta{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap}
+  .cta{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .cta .btn{text-align:center;display:flex;align-items:center;justify-content:center}
   .btn{display:inline-block;border:var(--border);border-radius:14px;padding:14px 28px;font-weight:800;font-size:16.5px;
     text-decoration:none;cursor:pointer;box-shadow:var(--shadow-s);transition:transform .12s,box-shadow .12s;background:#fff;color:var(--ink);font-family:inherit}
   .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
@@ -176,6 +177,7 @@
   @media (prefers-reduced-motion: reduce){.marquee .track{animation:none}.exch-track{animation:none}[data-enter]{animation:none}}
   @media (max-width:900px){
     .cards,.grid3,.steps{grid-template-columns:1fr}
+    .cta{grid-template-columns:1fr}
     .ticket.paid{margin-top:6px}
     .hero-flex .burst{display:none}
     nav{display:none}
