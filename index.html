@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" data-type="software">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="page-type" content="software">
+<meta name="site-kind" content="software">
+<title>STARDUST (SDUST) — 3,000 shares of stardust, fresh from the nebula</title>
+<meta name="description" content="Stardust (SDUST) is a share sale on BNB Smart Chain: 3,000 shares of 2,000,000,000 tokens each — 500 free and 2,500 paid, cut from a fixed supply of 6,000,000,000,000.">
+<meta name="theme-color" content="#fff3d6">
+<style>
+  :root{
+    --ink:#232338; --paper:#fff8ea; --muted:#5b5b74;
+    --coral:#ff6b5e; --sun:#ffc93c; --mint:#5fd68b; --sky:#4db8ff; --pink:#ff9ecb; --grape:#a78bfa;
+    --border:2.5px solid var(--ink);
+    --shadow:7px 7px 0 var(--ink);
+    --shadow-s:4px 4px 0 var(--ink);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);background:#ffeec9;
+    font-family:"Baloo 2","Comic Sans MS","Chalkboard SE","Segoe UI Rounded",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  #bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+  #bgFallback{position:fixed;inset:0;z-index:0;display:none;
+    background:radial-gradient(700px 420px at 82% 12%,#ffd3e8,transparent 65%),
+               radial-gradient(760px 480px at 10% 30%,#bfe8ff,transparent 65%),
+               radial-gradient(680px 520px at 55% 85%,#d8f7c9,transparent 65%),#ffeec9}
+  header,main,footer{position:relative;z-index:2}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  header{padding:20px 0 4px}
+  .nav{display:flex;align-items:center;gap:26px}
+  .wordmark{font-weight:800;font-size:24px;letter-spacing:.04em;color:var(--ink);text-decoration:none}
+  .wordmark .star{color:var(--coral);display:inline-block;transform:rotate(-12deg)}
+  .wordmark .tick{background:var(--ink);color:#fff;border-radius:8px;padding:1px 8px;font-size:14px;margin-left:8px;vertical-align:3px;letter-spacing:.08em}
+  nav{margin-left:auto;display:flex;gap:10px;font-size:15px;font-weight:700}
+  nav a{color:var(--ink);text-decoration:none;background:#fff;border:var(--border);border-radius:999px;padding:5px 15px;box-shadow:3px 3px 0 var(--ink);transition:transform .12s}
+  nav a:hover{transform:translate(-1px,-1px) rotate(-1deg)}
+  .hero{padding:64px 0 30px;text-align:left}
+  .sticker{display:inline-block;background:var(--sun);border:var(--border);border-radius:999px;
+    padding:6px 16px;font-weight:800;font-size:13.5px;letter-spacing:.06em;transform:rotate(-2deg);box-shadow:var(--shadow-s)}
+  .hero h1{font-size:clamp(56px,10vw,116px);line-height:.95;margin:26px 0 6px;font-weight:800;letter-spacing:.01em}
+  .hero h1 .dust{color:var(--coral)}
+  .hero h1 .spark{color:var(--sky);font-size:.45em;vertical-align:26px;display:inline-block;transform:rotate(14deg)}
+  .hero .lede{font-size:clamp(19px,2.6vw,25px);font-weight:600;max-width:660px;margin:16px 0 0}
+  .hero .lede b{background:linear-gradient(transparent 62%,var(--sun) 62%);padding:0 3px}
+  .hero .fact{font-size:17px;color:var(--muted);max-width:620px;margin:14px 0 0;font-weight:600}
+  .hero .fact b{color:var(--ink)}
+  .cta{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-block;border:var(--border);border-radius:14px;padding:14px 28px;font-weight:800;font-size:16.5px;
+    text-decoration:none;cursor:pointer;box-shadow:var(--shadow-s);transition:transform .12s,box-shadow .12s;background:#fff;color:var(--ink);font-family:inherit}
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.coral{background:var(--coral);color:#fff}
+  .btn.sky{background:var(--sky);color:#fff}
+  .btn[disabled]{opacity:.55;cursor:not-allowed;box-shadow:var(--shadow-s)}
+  .btn[disabled]:hover{transform:none;box-shadow:var(--shadow-s)}
+  .burst{display:inline-flex;align-items:center;justify-content:center;width:118px;height:118px;flex:none;
+    background:var(--pink);border:var(--border);color:var(--ink);font-weight:800;text-align:center;font-size:15px;line-height:1.25;
+    clip-path:polygon(50% 0%,59% 12%,72% 5%,76% 19%,90% 16%,90% 31%,100% 36%,94% 48%,100% 60%,88% 66%,90% 80%,77% 81%,74% 95%,62% 89%,54% 100%,45% 90%,32% 97%,30% 83%,15% 85%,17% 71%,4% 64%,11% 53%,2% 41%,14% 35%,13% 20%,27% 21%,32% 7%,44% 13%);
+    transform:rotate(10deg);padding:16px}
+  .hero-flex{display:flex;gap:28px;align-items:flex-start}
+  .hero-flex .burst{margin-top:120px}
+  .livebar{background:#fff;border:var(--border);border-radius:16px;box-shadow:var(--shadow);
+    padding:20px 24px 14px;margin-top:46px;transform:rotate(-.5deg)}
+  .livebar .row{margin-bottom:14px}
+  .livebar .lab{display:flex;justify-content:space-between;font-weight:800;font-size:15.5px;gap:10px;flex-wrap:wrap}
+  .livebar .lab .left{color:var(--muted);font-weight:700}
+  .livebar .bar{height:17px;border:var(--border);border-radius:999px;background:#fff;margin-top:7px;overflow:hidden}
+  .livebar .bar i{display:block;height:100%;width:100%;transition:width .8s ease}
+  .livebar .bar.free i{background:repeating-linear-gradient(45deg,var(--mint) 0 12px,#7fe0a8 12px 24px)}
+  .livebar .bar.paid i{background:repeating-linear-gradient(45deg,var(--sky) 0 12px,#8fd2ff 12px 24px)}
+  .livebar .hint{font-size:13px;color:var(--muted);font-weight:600;margin:2px 0 6px}
+  .stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px}
+  .stat{border:var(--border);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);min-width:180px;flex:1}
+  .stat .n{font-size:32px;font-weight:800;line-height:1.1}
+  .stat .d{font-size:14px;font-weight:600;margin-top:4px}
+  .stat.s1{background:#fff;transform:rotate(-1.4deg)}
+  .stat.s2{background:var(--mint);transform:rotate(1.2deg)}
+  .stat.s3{background:#ffe08a;transform:rotate(-.8deg)}
+  .stat.s4{background:#ffd3e8;transform:rotate(1.6deg)}
+  .marquee{margin:64px 0 0;background:var(--ink);color:#fff;transform:rotate(-1.2deg) scale(1.02);
+    overflow:hidden;white-space:nowrap;padding:10px 0;font-weight:800;letter-spacing:.14em;font-size:14.5px}
+  .marquee .track{display:inline-block;animation:mq 26s linear infinite}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  section{padding:88px 0 10px}
+  h2{font-size:clamp(32px,4.6vw,46px);margin:0 0 10px;font-weight:800}
+  h2 .u{background:linear-gradient(transparent 64%,var(--pink) 64%);padding:0 4px}
+  h2 .u2{background:linear-gradient(transparent 64%,#9adcff 64%);padding:0 4px}
+  .sub{color:var(--muted);max-width:640px;margin:0 0 38px;font-size:17px;font-weight:600}
+  .cards{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+  .ticket{background:#fff;border:var(--border);border-radius:18px;box-shadow:var(--shadow);padding:30px 30px 26px;position:relative}
+  .ticket.free{transform:rotate(-1deg)}
+  .ticket.paid{transform:rotate(1.1deg);margin-top:26px;background:#eaf7ff}
+  .ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:30px;height:30px;border-radius:50%;
+    background:#ffeec9;border:var(--border)}
+  .ticket::before{left:-17px}.ticket::after{right:-17px}
+  .ticket h3{margin:0;font-size:26px}
+  .ticket .tag{position:absolute;top:-17px;right:22px;background:var(--coral);color:#fff;border:var(--border);
+    border-radius:999px;padding:3px 14px;font-weight:800;font-size:13.5px;transform:rotate(3deg)}
+  .ticket.paid .tag{background:var(--sky)}
+  .ticket .per{font-weight:800;font-size:18px;margin-top:4px}
+  .ticket p{color:var(--muted);font-weight:600;margin:10px 0 0}
+  .dash{border-top:3px dashed #c9c9d6;margin:22px -30px 0}
+  .meter{height:16px;border:var(--border);border-radius:999px;background:#fff;margin:20px 0 8px;overflow:hidden}
+  .meter i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,var(--mint) 0 12px,#7fe0a8 12px 24px)}
+  .ticket.paid .meter i{background:repeating-linear-gradient(45deg,var(--sky) 0 12px,#8fd2ff 12px 24px)}
+  .meter-row{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--muted)}
+  .ticket .btn{margin-top:22px;width:100%;text-align:center}
+  .note{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:13px}
+  .grid3{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:22px;align-items:stretch}
+  .fact-card{border:var(--border);border-radius:16px;box-shadow:var(--shadow);padding:26px 24px}
+  .fact-card .n{font-size:clamp(24px,3vw,34px);font-weight:800;line-height:1.15}
+  .fact-card .d{font-size:15px;font-weight:600;margin-top:8px}
+  .fact-card.f1{background:var(--sun);transform:rotate(-1deg)}
+  .fact-card.f2{background:#fff;transform:rotate(1.3deg)}
+  .fact-card.f3{background:var(--mint);transform:rotate(-1.2deg)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .step{border:var(--border);border-radius:6px 18px 6px 18px;padding:24px 22px 20px;box-shadow:var(--shadow);position:relative}
+  .step::before{content:"";position:absolute;top:-13px;left:50%;transform:translateX(-50%) rotate(-3deg);
+    width:74px;height:22px;background:rgba(255,255,255,.65);border:1.5px solid rgba(35,35,56,.35);border-radius:2px}
+  .step .num{font-size:30px;font-weight:800}
+  .step h4{margin:4px 0 6px;font-size:18px}
+  .step p{margin:0;font-size:14.5px;font-weight:600;color:#41415c}
+  .step.st1{background:#ffd3e8;transform:rotate(-1.6deg)}
+  .step.st2{background:#fff;transform:rotate(1.2deg)}
+  .step.st3{background:#cdeffd;transform:rotate(-1.1deg)}
+  .step.st4{background:#ffe08a;transform:rotate(1.5deg)}
+  details{background:#fff;border:var(--border);border-radius:14px;box-shadow:var(--shadow-s);
+    padding:16px 22px;margin-bottom:14px}
+  details:nth-of-type(odd){transform:rotate(-.4deg)}
+  details:nth-of-type(even){transform:rotate(.4deg)}
+  summary{cursor:pointer;font-weight:800;font-size:16.5px}
+  details p{color:var(--muted);font-weight:600;margin:8px 0 2px}
+  .buyrow{display:flex;align-items:center;gap:10px;margin-top:18px;font-weight:800}
+  .buyrow input{width:84px;font:inherit;font-weight:800;padding:7px 10px;border:var(--border);border-radius:10px;background:#fff;color:var(--ink)}
+  .buyrow .buyTotal{color:var(--muted)}
+  .walletStatus{margin-top:22px;font-weight:700;color:var(--muted);font-size:14.5px}
+  .sharecard{background:#fff;border:var(--border);border-radius:18px;box-shadow:var(--shadow);
+    padding:30px;position:relative;transform:rotate(-.6deg)}
+  .sharecard .tag{position:absolute;top:-17px;left:24px;background:var(--mint);border:var(--border);
+    border-radius:999px;padding:3px 14px;font-weight:800;font-size:13.5px;transform:rotate(-2deg)}
+  .sharecard h2{font-size:clamp(26px,3.6vw,36px)}
+  .sharecard .sub2{color:var(--muted);font-weight:600;max-width:620px;margin:0 0 18px}
+  .sharetext{background:#fff8ea;border:2px dashed #b9b9cc;border-radius:12px;padding:16px 18px;
+    white-space:pre-wrap;font-weight:600;font-size:15.5px}
+  .wave{display:block;width:100%;height:54px;margin-top:70px}
+  footer{background:var(--ink);color:#f2ead8;padding:38px 0 46px;font-size:14.5px;font-weight:600}
+  footer .row{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+  footer b{color:var(--sun)}
+  #pauseBtn{position:fixed;right:16px;bottom:16px;z-index:5;background:#fff;color:var(--ink);
+    border:var(--border);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:800;cursor:pointer;box-shadow:var(--shadow-s);font-family:inherit}
+  #pauseBtn:hover{transform:rotate(-2deg)}
+  [data-enter]{animation:pop .7s cubic-bezier(.2,1.4,.4,1) both}
+  @keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){.marquee .track{animation:none}[data-enter]{animation:none}}
+  @media (max-width:900px){
+    .cards,.grid3,.steps{grid-template-columns:1fr}
+    .ticket.paid{margin-top:6px}
+    .hero-flex .burst{display:none}
+    nav{display:none}
+    .hero{padding:44px 0 10px}
+    section{padding:60px 0 6px}
+    .stat{min-width:150px}
+  }
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="bgFallback" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="#top"><span class="star">✦</span> STARDUST<span class="tick">SDUST</span></a>
+    <nav>
+      <a href="#sale">Shares</a>
+      <a href="#supply">Supply</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero" data-enter>
+    <div class="wrap">
+      <span class="sticker">★ THE CONTRACT IS LIVE — SALE OPENS TODAY 19:00 WIB</span>
+      <div class="hero-flex">
+        <div>
+          <h1>STAR<span class="dust">DUST</span><span class="spark">✦</span></h1>
+          <p class="lede">Fresh from the nebula: <b>3,000 shares</b> of pure stardust. <b>500 are free</b>, 2,500 are up for grabs — and free or paid, every share is exactly the same size.</p>
+          <p class="fact">One share = <b>2,000,000,000 SDUST</b>. Total supply is fixed at <b>6,000,000,000,000</b> — minted once, never topped up, no secret second batch.</p>
+          <div class="cta">
+            <a class="btn coral" href="#sale">Grab a share →</a>
+            <a class="btn" href="#supply">Count the supply</a>
+          </div>
+        </div>
+        <div class="burst">500<br>FREE<br>SHARES!</div>
+      </div>
+      <div class="livebar">
+        <div class="row">
+          <div class="lab"><span>🎫 FREE SHARES <span class="left">— <span id="freeClaimedLbl">0</span> claimed so far</span></span><span id="freeLeftLbl">500 left</span></div>
+          <div class="bar free"><i id="freeBar"></i></div>
+        </div>
+        <div class="row">
+          <div class="lab"><span>🚀 PAID SHARES <span class="left">— <span id="paidSoldLbl">0</span> sold so far</span></span><span id="paidLeftLbl">2,500 left</span></div>
+          <div class="bar paid"><i id="paidBar"></i></div>
+        </div>
+        <p class="hint">Live counters — they wake up with the contract and read straight from the chain.</p>
+      </div>
+      <div class="stats">
+        <div class="stat s1"><div class="n">3,000</div><div class="d">shares in total — that is the whole sale</div></div>
+        <div class="stat s2"><div class="n">500 free</div><div class="d">one per wallet, first come first served</div></div>
+        <div class="stat s3"><div class="n">2,500 paid</div><div class="d">one fixed price — 0.002 BNB a share</div></div>
+        <div class="stat s4"><div class="n">6 trillion</div><div class="d">total SDUST supply — fixed, never more</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><span class="track">STARDUST ✦ SDUST ✦ 500 FREE SHARES ✦ 6,000,000,000,000 SUPPLY ✦ ONE SHARE = 2,000,000,000 SDUST ✦ STARDUST ✦ SDUST ✦ 500 FREE SHARES ✦ 6,000,000,000,000 SUPPLY ✦ ONE SHARE = 2,000,000,000 SDUST ✦&nbsp;</span></div>
+
+  <section id="sale">
+    <div class="wrap">
+      <h2>Pick your <span class="u">ticket</span> 🎟</h2>
+      <p class="sub">Two tickets into the same nebula. A free share and a paid share weigh exactly the same — 2,000,000,000 SDUST each, no VIP lane.</p>
+      <div class="cards">
+        <div class="ticket free">
+          <span class="tag">FREE!</span>
+          <h3>🎫 Free share</h3>
+          <div class="per">2,000,000,000 SDUST · 0 BNB</div>
+          <p>One per wallet while the 500 last. No purchase, no fee, no hoop to jump through — when they are gone, they are gone.</p>
+          <div class="dash"></div>
+          <div class="meter"><i id="freeMeter"></i></div>
+          <div class="meter-row"><span><span id="freeSold">0</span> / 500 claimed</span><span><span id="freeLeft">500</span> left</span></div>
+          <button class="btn coral" id="claimBtn" type="button" disabled>Claim opens at launch</button>
+          <p class="note">This counter wakes up with the contract and reads straight from the chain.</p>
+        </div>
+        <div class="ticket paid">
+          <span class="tag">FIXED PRICE</span>
+          <h3>🚀 Paid share</h3>
+          <div class="per">2,000,000,000 SDUST · 0.002 BNB</div>
+          <p>2,500 shares at one fixed price — 0.002 BNB each, the same for everyone. No auctions, no bidding wars, no surprises at checkout.</p>
+          <div class="dash"></div>
+          <div class="meter"><i id="paidMeter"></i></div>
+          <div class="meter-row"><span><span id="paidSold">0</span> / 2,500 sold</span><span><span id="paidLeft">2,500</span> left</span></div>
+          <div class="buyrow">
+            <label for="buyQty">Shares</label>
+            <input id="buyQty" type="number" min="1" step="1" value="1">
+            <span class="buyTotal" id="buyTotal">= 0.002 BNB</span>
+          </div>
+          <button class="btn sky" id="buyBtn" type="button" disabled>Sale opens at launch</button>
+          <p class="note">No per-wallet limit — grab one share or grab a hundred, the price never changes.</p>
+        </div>
+      </div>
+      <p class="walletStatus" id="walletStatus">Wallet not connected yet — claiming and buying connect it for you.</p>
+    </div>
+  </section>
+
+  <section id="shareBox" hidden>
+    <div class="wrap">
+      <div class="sharecard">
+        <span class="tag">YOUR SHARE IS IN! 🎉</span>
+        <h2>Tell the sky — only if you feel like it</h2>
+        <p class="sub2">Your claim is already done and dusted; nothing depends on this. If you want to spread the word, here is a ready-made post — edit it, post it, or close this box and enjoy the silence of space.</p>
+        <div class="sharetext" id="shareText"></div>
+        <div class="cta">
+          <a class="btn coral" id="shareBtn" href="#" target="_blank" rel="noopener">Post it on X →</a>
+          <button class="btn" id="shareClose" type="button">No thanks</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="supply">
+    <div class="wrap">
+      <h2>Counted once, <span class="u2">counted honestly</span></h2>
+      <p class="sub">Six trillion tokens exist, and the shares below account for every last one. No reserve tranche, no team stash, no quiet extra allocation.</p>
+      <div class="grid3">
+        <div class="fact-card f1"><div class="n">6,000,000,000,000</div><div class="d">total supply — fixed at deployment, never increased</div></div>
+        <div class="fact-card f2"><div class="n">2,000,000,000 each</div><div class="d">in every share — free and paid shares are identical twins</div></div>
+        <div class="fact-card f3"><div class="n">3,000 shares total</div><div class="d">500 free + 2,500 paid — the whole supply, nothing left over</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <h2>How the magic happens ✨</h2>
+      <p class="sub">Four steps, all readable on-chain the moment the contract is live.</p>
+      <div class="steps">
+        <div class="step st1"><div class="num">1</div><h4>Contract lands</h4><p>The address appears on this page before the sale opens — check it before any wallet connects.</p></div>
+        <div class="step st2"><div class="num">2</div><h4>Free rush</h4><p>Any wallet grabs one free share while the 500 last. One per wallet, enforced by the contract.</p></div>
+        <div class="step st3"><div class="num">3</div><h4>Paid shares fly</h4><p>Paid shares sell at the announced fixed price until the 2,500 are gone or the window closes.</p></div>
+        <div class="step st4"><div class="num">4</div><h4>Counters stay public</h4><p>Every claim and sale stays readable on-chain for good — anyone can recount the nebula at any time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2>Curious? Good. 🌟</h2>
+      <p class="sub">Short answers, no riddles. Anything not settled yet says so — it gets filled in here before launch, never after.</p>
+      <details><summary>When does the sale open?</summary><p>The opening time is announced on this page together with the contract address. Nothing can be claimed or bought before that moment.</p></details>
+      <details><summary>What does a paid share cost?</summary><p>0.002 BNB per share, fixed for the whole sale — the same price for the first buyer and the last.</p></details>
+      <details><summary>Can one wallet grab two free shares?</summary><p>Nope. One free share per wallet, enforced by the contract itself — not by politeness.</p></details>
+      <details><summary>Are free and paid shares different?</summary><p>Not one bit. Both are exactly 2,000,000,000 SDUST — the free ones are simply claimed instead of bought.</p></details>
+      <details><summary>Is there a contract address yet?</summary><p>Yes — 0x111c3a1D1d3Df9A0B9615dF8fC7276B3a2fAcAfd. It is published here first, and it should be verified here before transacting anywhere.</p></details>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true"><path d="M0,28 C240,54 480,2 720,28 C960,54 1200,2 1440,28 L1440,54 L0,54 Z" fill="#232338"/></svg>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <div><b>STARDUST (SDUST)</b> — a share sale on BNB Smart Chain. Contract: 0x111c3a1D1d3Df9A0B9615dF8fC7276B3a2fAcAfd · Sale: Nov 16, 19:00 WIB → Nov 23, 19:00 WIB.</div>
+    <div>Verify every address on this page before transacting. This site never asks for a private key, seed phrase or password.</div>
+  </div>
+</footer>
+
+<button id="pauseBtn" type="button" aria-pressed="false">⏸ Pause sky</button>
+
+<script>
+(function(){
+  "use strict";
+  var canvas = document.getElementById("bg");
+  var ctx = canvas.getContext("2d");
+  if(!ctx){ document.getElementById("bgFallback").style.display = "block"; canvas.style.display = "none"; return; }
+
+  var W = 0, H = 0, DPR = 1;
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.floor(W * DPR); canvas.height = Math.floor(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    buildStars();
+  }
+
+  // soft nebula clouds: big pastel blobs drifting on slow sine paths
+  var clouds = [
+    {x:.82, y:.10, r:340, c:"255,179,216", dx:.00016, dy:.00011, ph:0.0},
+    {x:.10, y:.28, r:380, c:"147,210,255", dx:.00012, dy:.00019, ph:2.1},
+    {x:.55, y:.82, r:420, c:"168,240,178", dx:.00014, dy:.00009, ph:4.2},
+    {x:.30, y:.60, r:300, c:"196,181,253", dx:.00010, dy:.00015, ph:1.3},
+    {x:.92, y:.68, r:300, c:"255,214,150", dx:.00018, dy:.00012, ph:5.4},
+    {x:.45, y:.05, r:260, c:"255,190,170", dx:.00013, dy:.00017, ph:3.0}
+  ];
+  var stars = [];
+  function buildStars(){
+    stars = [];
+    var n = Math.floor((W * H) / 9000);
+    for(var i = 0; i < n; i++){
+      stars.push({x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.7+0.6,
+                  ph:Math.random()*6.28, sp:0.6+Math.random()*1.8, warm:Math.random()<0.3});
+    }
+  }
+  // floating doodles: little plus-sparkles and rings that bob around
+  var doodles = [];
+  for(var i = 0; i < 14; i++){
+    doodles.push({x:Math.random(), y:Math.random(), s:7+Math.random()*10, ph:Math.random()*6.28,
+                  sp:0.3+Math.random()*0.5, ring:Math.random()<0.4,
+                  c:["#ff6b5e","#4db8ff","#ffc93c","#5fd68b","#ff9ecb"][i % 5]});
+  }
+  var meteor = null, nextMeteor = 4000 + Math.random()*6000;
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var running = !reduce, t0 = performance.now(), frozen = 0;
+  var btn = document.getElementById("pauseBtn");
+  function setBtn(){ btn.textContent = running ? "⏸ Pause sky" : "▶ Play sky"; btn.setAttribute("aria-pressed", String(!running)); }
+  btn.addEventListener("click", function(){
+    if(running){ frozen = performance.now() - t0; running = false; draw(frozen); }
+    else { t0 = performance.now() - frozen; running = true; requestAnimationFrame(frame); }
+    setBtn();
+  });
+  setBtn();
+
+  function draw(now){
+    var t = now / 1000;
+    var g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, "#ffedc2"); g.addColorStop(0.55, "#ffe9c9"); g.addColorStop(1, "#ffe3bd");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    var i, c, cx, cy, rg;
+    for(i = 0; i < clouds.length; i++){
+      c = clouds[i];
+      cx = (c.x + Math.sin(now * c.dx + c.ph) * 0.05) * W;
+      cy = (c.y + Math.cos(now * c.dy + c.ph * 1.7) * 0.045) * H;
+      rg = ctx.createRadialGradient(cx, cy, 0, cx, cy, c.r);
+      rg.addColorStop(0, "rgba(" + c.c + ",0.55)");
+      rg.addColorStop(0.6, "rgba(" + c.c + ",0.28)");
+      rg.addColorStop(1, "rgba(" + c.c + ",0)");
+      ctx.fillStyle = rg;
+      ctx.fillRect(cx - c.r, cy - c.r, c.r * 2, c.r * 2);
+    }
+
+    for(i = 0; i < stars.length; i++){
+      var s = stars[i];
+      var tw = 0.35 + 0.65 * Math.abs(Math.sin(t * s.sp + s.ph));
+      ctx.globalAlpha = tw;
+      ctx.fillStyle = s.warm ? "#e8a13a" : "#7d94ad";
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.2832); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    for(i = 0; i < doodles.length; i++){
+      var d = doodles[i];
+      var bob = Math.sin(t * d.sp + d.ph) * 14;
+      var x = d.x * W, y = d.y * H + bob;
+      ctx.strokeStyle = d.c; ctx.fillStyle = d.c; ctx.globalAlpha = 0.75; ctx.lineWidth = 2.4;
+      if(d.ring){ ctx.beginPath(); ctx.arc(x, y, d.s * 0.55, 0, 6.2832); ctx.stroke(); }
+      else{
+        ctx.beginPath();
+        ctx.moveTo(x - d.s, y); ctx.lineTo(x + d.s, y);
+        ctx.moveTo(x, y - d.s); ctx.lineTo(x, y + d.s);
+        ctx.stroke();
+        ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 6.2832); ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    if(!meteor && now > nextMeteor && running){
+      meteor = {x: Math.random()*W*0.6 + W*0.3, y: Math.random()*H*0.25, born: now};
+    }
+    if(meteor){
+      var age = (now - meteor.born) / 1000;
+      if(age > 1.1){ meteor = null; nextMeteor = now + 5000 + Math.random()*7000; }
+      else{
+        var mx = meteor.x + age * 420, my = meteor.y + age * 190;
+        var mg = ctx.createLinearGradient(mx, my, mx - 90, my - 41);
+        mg.addColorStop(0, "rgba(255,255,255,0.95)"); mg.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.strokeStyle = mg; ctx.lineWidth = 2.6; ctx.lineCap = "round";
+        ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(mx - 90, my - 41); ctx.stroke();
+        ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(mx, my, 2.6, 0, 6.2832); ctx.fill();
+      }
+    }
+  }
+  function frame(now){ draw(now); if(running) requestAnimationFrame(frame); }
+  window.addEventListener("resize", resize);
+  resize();
+  draw(0);
+  if(running) requestAnimationFrame(frame);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  // Filled from deploy/info.json when the contract is published; empty = pre-launch mode.
+  var CONTRACT = "0x111c3a1D1d3Df9A0B9615dF8fC7276B3a2fAcAfd";
+  var SITE_URL = "https://stardust-sdust.github.io/stardust/";
+  var START = 1794830400, END = 1795435200; // 2026-11-16 19:00 WIB -> 2026-11-23 19:00 WIB
+  var PRICE_WEI = "2000000000000000"; // 0.002 BNB
+  var FREE_CAP = 500, PAID_CAP = 2500;
+  var SHARE_TEXT = "Just grabbed my share of the nebula ✦\n\n" +
+    "1 share = 2,000,000,000 $SDUST — and 500 shares were free, one per wallet. Mine is already in the bag.\n\n" +
+    "Still some stardust floating up there 👇\n" + SITE_URL;
+  var ABI = [
+    "function claimFree()",
+    "function buy(uint256 n) payable",
+    "function freeSold() view returns (uint256)",
+    "function paidSold() view returns (uint256)",
+    "function freeClaimed(address) view returns (bool)"
+  ];
+  var RPCS = ["https://bsc-dataseed.binance.org", "https://bsc.publicnode.com",
+              "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3"];
+  var signerContract = null, userAddr = null;
+
+  function $(id){ return document.getElementById(id); }
+  function fmt(n){ return Number(n).toLocaleString("en-US"); }
+  function setStatus(t){ var s = $("walletStatus"); if(s) s.textContent = t; }
+
+  function showShare(){
+    $("shareText").textContent = SHARE_TEXT;
+    $("shareBtn").href = "https://x.com/intent/post?text=" + encodeURIComponent(SHARE_TEXT);
+    var box = $("shareBox");
+    box.hidden = false;
+    box.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+  $("shareClose").addEventListener("click", function(){ $("shareBox").hidden = true; });
+
+  async function readContract(){
+    for (var i = 0; i < RPCS.length; i++){
+      try {
+        var p = new ethers.JsonRpcProvider(RPCS[i], 56);
+        return new ethers.Contract(CONTRACT, ABI, p);
+      } catch(e){ /* try next */ }
+    }
+    return null;
+  }
+
+  async function refreshStats(){
+    if (!CONTRACT || typeof ethers === "undefined") return;
+    try {
+      var ro = await readContract(); if (!ro) return;
+      var f = Number(await ro.freeSold()), p = Number(await ro.paidSold());
+      $("freeSold").textContent = fmt(f); $("freeLeft").textContent = fmt(FREE_CAP - f);
+      $("paidSold").textContent = fmt(p); $("paidLeft").textContent = fmt(PAID_CAP - p);
+      $("freeMeter").style.width = (f / FREE_CAP * 100) + "%";
+      $("paidMeter").style.width = (p / PAID_CAP * 100) + "%";
+      var fb = $("freeBar"), pb = $("paidBar");
+      if (fb) fb.style.width = ((FREE_CAP - f) / FREE_CAP * 100) + "%";
+      if (pb) pb.style.width = ((PAID_CAP - p) / PAID_CAP * 100) + "%";
+      $("freeClaimedLbl").textContent = fmt(f); $("paidSoldLbl").textContent = fmt(p);
+      $("freeLeftLbl").textContent = fmt(FREE_CAP - f) + " left";
+      $("paidLeftLbl").textContent = fmt(PAID_CAP - p) + " left";
+      updateButtons(f, p);
+    } catch(e){ /* keep last shown values */ }
+  }
+
+  function salePhase(){
+    var now = Math.floor(Date.now() / 1000);
+    if (now < START) return "before";
+    if (now > END) return "after";
+    return "live";
+  }
+
+  function updateButtons(f, p){
+    var phase = salePhase();
+    var cb = $("claimBtn"), bb = $("buyBtn");
+    if (!CONTRACT){ return; }
+    if (phase === "before"){ cb.disabled = true; bb.disabled = true;
+      cb.textContent = "Claim opens Nov 16, 19:00 WIB"; bb.textContent = "Sale opens Nov 16, 19:00 WIB"; return; }
+    if (phase === "after"){ cb.disabled = true; bb.disabled = true;
+      cb.textContent = "Free claims closed"; bb.textContent = "Sale closed"; return; }
+    cb.disabled = f >= FREE_CAP; cb.textContent = f >= FREE_CAP ? "Free shares gone" : "Claim my free share";
+    bb.disabled = p >= PAID_CAP; bb.textContent = p >= PAID_CAP ? "Sold out" : "Buy shares";
+  }
+
+  function loadScript(u){
+    return new Promise(function(res, rej){
+      var s = document.createElement("script");
+      s.src = u; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+  async function loadWC(){
+    if (window["@walletconnect/ethereum-provider"]) return;
+    var urls = ["https://unpkg.com/@walletconnect/ethereum-provider@2.21.0/dist/index.umd.js",
+                "https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.21.0/dist/index.umd.js"];
+    for (var i = 0; i < urls.length; i++){
+      try { await loadScript(urls[i]); if (window["@walletconnect/ethereum-provider"]) return; } catch(e){ /* fallback */ }
+    }
+    throw new Error("WalletConnect failed to load");
+  }
+
+  async function connectWallet(){
+    if (signerContract) return signerContract;
+    var eip1193 = null;
+    if (window.ethereum){ eip1193 = window.ethereum; }
+    else {
+      await loadWC();
+      var wc = await window["@walletconnect/ethereum-provider"].EthereumProvider.init({
+        projectId: "ff5985647ed78916bed0155d2ff84a1c",
+        chains: [56],
+        showQrModal: true,
+        rpcMap: { 56: RPCS[0] },
+        metadata: { name: "Stardust (SDUST)", description: "Stardust share sale on BNB Smart Chain",
+                    url: SITE_URL, icons: [] }
+      });
+      await wc.connect();
+      eip1193 = wc;
+    }
+    var bp = new ethers.BrowserProvider(eip1193);
+    var net = await bp.getNetwork();
+    if (Number(net.chainId) !== 56){
+      try { await eip1193.request({ method: "wallet_switchEthereumChain", params: [{ chainId: "0x38" }] }); } catch(e){ /* user may switch manually */ }
+      bp = new ethers.BrowserProvider(eip1193);
+    }
+    var signer = await bp.getSigner();
+    userAddr = await signer.getAddress();
+    signerContract = new ethers.Contract(CONTRACT, ABI, signer);
+    setStatus("Wallet connected: " + userAddr.slice(0, 6) + "…" + userAddr.slice(-4));
+    return signerContract;
+  }
+
+  async function runTx(fn){
+    try {
+      setStatus("Waiting for your wallet…");
+      var c = await connectWallet();
+      var tx = await fn(c);
+      setStatus("Sent — waiting for the chain to confirm…");
+      await tx.wait();
+      setStatus("Confirmed on-chain. Enjoy your stardust ✦");
+      await refreshStats();
+      showShare();
+      return true;
+    } catch(e){
+      setStatus("That did not go through: " + (e && e.shortMessage ? e.shortMessage : (e && e.message ? e.message.slice(0, 140) : "unknown error")));
+      return false;
+    }
+  }
+
+  $("claimBtn").addEventListener("click", function(){
+    runTx(function(c){ return c.claimFree(); });
+  });
+  $("buyBtn").addEventListener("click", function(){
+    var n = parseInt($("buyQty").value, 10);
+    if (!n || n < 1){ setStatus("Pick at least 1 share."); return; }
+    var value = (BigInt(PRICE_WEI) * BigInt(n)).toString();
+    runTx(function(c){ return c.buy(n, { value: value }); });
+  });
+  $("buyQty").addEventListener("input", function(){
+    var n = parseInt($("buyQty").value, 10) || 0;
+    $("buyTotal").textContent = "= " + (n * 0.002).toFixed(3).replace(/0+$/, "").replace(/\.$/, ".0") + " BNB";
+  });
+
+  if (CONTRACT){ refreshStats(); setInterval(refreshStats, 30000); updateButtons(0, 0); }
+})();
+</script>
+</body>
+</html>
