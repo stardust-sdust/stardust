@@ -70,6 +70,7 @@
   .livebar .bar i{display:block;height:100%;width:100%;transition:width .8s ease}
   .livebar .bar.free i{background:repeating-linear-gradient(45deg,var(--mint) 0 12px,#7fe0a8 12px 24px)}
   .livebar .bar.paid i{background:repeating-linear-gradient(45deg,var(--sky) 0 12px,#8fd2ff 12px 24px)}
+  .livebar .bar.total i{background:repeating-linear-gradient(45deg,var(--mint) 0 12px,#7fe0a8 12px 24px,var(--sky) 24px 36px,#8fd2ff 36px 48px)}
   .livebar .hint{font-size:13px;color:var(--muted);font-weight:600;margin:2px 0 6px}
   .stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px}
   .stat{border:var(--border);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);min-width:180px;flex:1}
@@ -222,14 +223,12 @@
       </div>
       <div class="livebar">
         <div class="row">
-          <div class="lab"><span>🎫 FREE SHARES <span class="left">— <span id="freeClaimedLbl">0</span> claimed so far</span></span><span id="freeLeftLbl">500 left</span></div>
-          <div class="bar free"><i id="freeBar"></i></div>
+          <div class="lab"><span>🎫 ALL SHARES <span class="left">— <span id="totalTakenLbl">0</span> taken so far</span></span><span id="totalLeftLbl">3,000 left</span></div>
+          <div class="bar total"><i id="totalBar"></i></div>
         </div>
         <div class="row">
-          <div class="lab"><span>🚀 PAID SHARES <span class="left">— <span id="paidSoldLbl">0</span> sold so far</span></span><span id="paidLeftLbl">2,500 left</span></div>
-          <div class="bar paid"><i id="paidBar"></i></div>
         </div>
-        <p class="hint">Live counters — they wake up with the contract and read straight from the chain.</p>
+        <p class="hint">Live counter — it wakes up with the contract and reads straight from the chain. Free and paid shares counted together.</p>
       </div>
       <div class="stats">
         <div class="stat s1"><div class="n">3,000</div><div class="d">shares in total — that is the whole sale</div></div>
@@ -548,12 +547,10 @@ Rules you must follow:
       $("paidSold").textContent = fmt(p); $("paidLeft").textContent = fmt(PAID_CAP - p);
       $("freeMeter").style.width = (f / FREE_CAP * 100) + "%";
       $("paidMeter").style.width = (p / PAID_CAP * 100) + "%";
-      var fb = $("freeBar"), pb = $("paidBar");
-      if (fb) fb.style.width = ((FREE_CAP - f) / FREE_CAP * 100) + "%";
-      if (pb) pb.style.width = ((PAID_CAP - p) / PAID_CAP * 100) + "%";
-      $("freeClaimedLbl").textContent = fmt(f); $("paidSoldLbl").textContent = fmt(p);
-      $("freeLeftLbl").textContent = fmt(FREE_CAP - f) + " left";
-      $("paidLeftLbl").textContent = fmt(PAID_CAP - p) + " left";
+      var tb = $("totalBar"), taken = f + p, cap = FREE_CAP + PAID_CAP;
+      if (tb) tb.style.width = ((cap - taken) / cap * 100) + "%";
+      $("totalTakenLbl").textContent = fmt(taken);
+      $("totalLeftLbl").textContent = fmt(cap - taken) + " left";
       updateButtons(f, p);
     } catch(e){ /* keep last shown values */ }
   }
