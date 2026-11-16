@@ -155,6 +155,14 @@
   .sharecard .sub2{color:var(--muted);font-weight:600;max-width:620px;margin:0 0 18px}
   .sharetext{background:#fff8ea;border:2px dashed #b9b9cc;border-radius:12px;padding:16px 18px;
     white-space:pre-wrap;font-weight:600;font-size:15.5px}
+  .agent-card{background:#fff;border:var(--border);border-radius:18px;box-shadow:var(--shadow);
+    padding:30px;transform:rotate(.5deg)}
+  .agent-card pre{background:#fff8ea;border:2px dashed #b9b9cc;border-radius:12px;padding:18px 20px;
+    white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-size:13.5px;line-height:1.55;margin:20px 0 16px;max-height:340px;overflow:auto}
+  .doclinks{display:flex;gap:10px;flex-wrap:wrap}
+  .doclinks a{border:var(--border);border-radius:999px;padding:5px 16px;font-weight:800;font-size:14px;
+    background:var(--sun,#ffd23f);color:var(--ink);text-decoration:none;box-shadow:var(--shadow-s)}
   .wave{display:block;width:100%;height:54px;margin-top:70px}
   footer{background:var(--ink);color:#f2ead8;padding:38px 0 46px;font-size:14.5px;font-weight:600}
   footer .row{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
@@ -187,6 +195,7 @@
       <a href="#sale">Shares</a>
       <a href="#supply">Supply</a>
       <a href="#how">How it works</a>
+      <a href="#agents">For agents</a>
       <a href="#faq">FAQ</a>
     </nav>
   </div>
@@ -305,6 +314,34 @@
         <div class="step st2"><div class="num">2</div><h4>Free rush</h4><p>Any wallet grabs one free share while the 500 last. One per wallet, enforced by the contract.</p></div>
         <div class="step st3"><div class="num">3</div><h4>Paid shares fly</h4><p>Paid shares sell at the announced fixed price until the 2,500 are gone or the window closes.</p></div>
         <div class="step st4"><div class="num">4</div><h4>Counters stay public</h4><p>Every claim and sale stays readable on-chain for good — anyone can recount the nebula at any time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agents">
+    <div class="wrap">
+      <h2>Send your agent in 🤖</h2>
+      <p class="sub">Paste this prompt into your AI agent. It checks the contract address against this page before signing anything — and it waits for your explicit approval.</p>
+      <div class="agent-card">
+        <button class="btn coral" id="copyPromptBtn" type="button">Copy the prompt</button>
+        <pre id="agentPrompt">You are helping me join the STARDUST (SDUST) share sale on BNB Smart Chain (chainId 56).
+
+Official site: https://stardust-sdust.github.io/stardust/
+Sale contract: 0x111c3a1D1d3Df9A0B9615dF8fC7276B3a2fAcAfd
+
+Rules you must follow:
+1. Take the contract address from this prompt only, and check it matches the address published on the official site before any transaction. The contract is verified on Sourcify (exact match).
+2. Show me the contract, the function, the arguments and the exact BNB amount, then wait for my explicit "yes" before sending.
+3. Never ask for a private key, seed phrase or password. Never approve unlimited token allowances.
+4. Free share: call claimFree() — one per wallet, no payment. Sale window: Nov 16, 19:00 WIB to Nov 23, 19:00 WIB (Asia/Jakarta).
+5. Paid shares: call buy(n) with exactly n × 0.002 BNB — open to any wallet, no per-wallet limit.
+6. Full machine-readable docs: read agent.md and llms.txt on the official site.
+7. After my claim or buy succeeds, offer me the ready-made X post shown on the site (the share box) — show it to me first, and post only with my approval.</pre>
+        <div class="doclinks">
+          <a href="agent.md">agent.md</a>
+          <a href="skill.md">skill.md</a>
+          <a href="llms.txt">llms.txt</a>
+        </div>
       </div>
     </div>
   </section>
@@ -616,6 +653,22 @@
     var n = parseInt($("buyQty").value, 10) || 0;
     $("buyTotal").textContent = "= " + (n * 0.002).toFixed(3).replace(/0+$/, "").replace(/\.$/, ".0") + " BNB";
   });
+
+  var cpBtn = $("copyPromptBtn");
+  if (cpBtn){
+    cpBtn.addEventListener("click", function(){
+      var t = $("agentPrompt").innerText;
+      function done(){ cpBtn.textContent = "Copied ✓"; setTimeout(function(){ cpBtn.textContent = "Copy the prompt"; }, 2000); }
+      function fallback(){
+        var ta = document.createElement("textarea");
+        ta.value = t; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done).catch(fallback); }
+      else { fallback(); }
+    });
+  }
 
   if (CONTRACT){ refreshStats(); setInterval(refreshStats, 30000); updateButtons(0, 0); }
 })();
